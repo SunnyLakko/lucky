@@ -66,6 +66,31 @@
   margin: 0 0 20px;
 }
 
+.author-card__link {
+  display: inline-block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: #fff;
+  background: #0088cc;
+  border: 3px solid #2b1d3a;
+  padding: 8px 14px;
+  margin-bottom: 16px;
+  text-decoration: none;
+  box-shadow: 0 4px 0 #2b1d3a;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.author-card__link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 0 #2b1d3a;
+}
+
+.author-card__link:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
 .author-card__close {
   font-family: 'Press Start 2P', monospace;
   font-size: 11px;

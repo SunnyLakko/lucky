@@ -13,4 +13,9 @@ export default defineConfig({
   build: {
     outDir: 'dist',
   },
+  server: {
+    middlewareMode: false,
+  },
+  // Конфигурируем статические папки для dev и build
+  publicDir: 'refs',
 })

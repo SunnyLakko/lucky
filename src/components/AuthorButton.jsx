@@ -21,6 +21,14 @@ export default function AuthorButton() {
             <img src={avatar} alt="Аватар автора" className="author-card__avatar" />
             <p className="author-card__nick">sunlakko</p>
             <p className="author-card__desc">люблю цветочки и майнкрафт</p>
+            <a 
+              href="https://t.me/miku_sama" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="author-card__link"
+            >
+              📱 Telegram
+            </a>
             <button className="author-card__close" onClick={() => setOpen(false)}>
               Закрыть
             </button>

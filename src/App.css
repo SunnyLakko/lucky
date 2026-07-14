@@ -37,11 +37,11 @@ img {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background-image: url('./assets/sprites/bg.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: invert(1);
+  /* Больше НЕ инвертируем, фоны можно менять */
+  /* filter: invert(1); */
 }
 
 .app-stage {
