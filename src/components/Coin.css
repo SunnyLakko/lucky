@@ -1,0 +1,58 @@
+.coin-wrapper {
+  position: absolute;
+  left: 50%;
+  /*
+    Раньше монетка была "соседом" .machine__body внутри более высокого
+    родителя .machine и позиционировалась через bottom:%, который
+    считался от чужой (намного большей) высоты — из-за этого монетка
+    "уезжала" далеко от прорези. Теперь Coin рендерится прямо внутри
+    .machine__body, в той же системе координат, что и .machine__slot-hitbox
+    (top:56%, height:9%) — и располагается сразу под прорезью, с небольшим
+    отступом, чтобы её было удобно тянуть вверх, в прорезь.
+  */
+  top: 70%;
+  width: 20%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 20;
+  touch-action: none; /* критично: без этого touch-скролл будет перехватывать жест */
+}
+
+.coin {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: grab;
+  user-select: none;
+  -webkit-user-select: none;
+  will-change: transform;
+  filter: drop-shadow(0 4px 4px rgba(0, 0, 0, 0.45));
+}
+
+.coin__sprite {
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  pointer-events: none;
+}
+
+.coin--dragging {
+  cursor: grabbing;
+  filter: drop-shadow(0 8px 8px rgba(0, 0, 0, 0.55));
+}
+
+.coin__hint {
+  font-family: 'VT323', monospace;
+  font-size: 16px;
+  color: #f4f1e6;
+  text-shadow: 1px 1px 0 #000;
+  letter-spacing: 0.5px;
+  pointer-events: none;
+  white-space: nowrap;
+}

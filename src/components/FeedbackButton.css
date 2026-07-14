@@ -1,0 +1,101 @@
+.feedback-btn {
+  position: fixed;
+  right: 12px;
+  top: 12px;
+  z-index: 50;
+  width: 40px;
+  height: 40px;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 15px;
+  color: #fff0f3;
+  background: #3fd6ff;
+  border: 3px solid #0d3a4a;
+  box-shadow: 0 3px 0 #0d3a4a;
+  cursor: pointer;
+}
+
+.feedback-btn:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.feedback-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 5, 20, 0.72);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+  animation: feedback-fade-in 0.2s ease-out;
+}
+
+.feedback-card {
+  max-width: 340px;
+  width: 100%;
+  background: #fdf6e3;
+  border: 4px solid #2b1d3a;
+  box-shadow: 8px 8px 0 rgba(0, 0, 0, 0.5);
+  padding: 24px;
+  text-align: center;
+  animation: feedback-pop-in 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.feedback-card__title {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 13px;
+  color: #b8860b;
+  margin: 0 0 16px;
+}
+
+.feedback-card__textarea {
+  width: 100%;
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  padding: 10px;
+  border: 3px solid #2b1d3a;
+  resize: vertical;
+  margin-bottom: 16px;
+  background: #fff;
+  color: #2b1d3a;
+}
+
+.feedback-card__send {
+  display: block;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 11px;
+  padding: 12px 16px;
+  background: #3fd6ff;
+  color: #0d3a4a;
+  border: 3px solid #0d3a4a;
+  box-shadow: 0 4px 0 #0d3a4a;
+  cursor: pointer;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.feedback-card__send:active {
+  transform: translateY(4px);
+  box-shadow: none;
+}
+
+.feedback-card__close {
+  font-family: 'Press Start 2P', monospace;
+  font-size: 10px;
+  padding: 8px 14px;
+  background: transparent;
+  color: #6b4fb0;
+  border: 2px solid #6b4fb0;
+  cursor: pointer;
+}
+
+@keyframes feedback-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes feedback-pop-in {
+  from { transform: scale(0.7); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}

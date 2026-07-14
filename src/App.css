@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background-color: #1b1030;
+  overflow: hidden;
+}
+
+img {
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.app-shell {
+  position: relative;
+  height: 100dvh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/*
+  Фон вынесен в отдельный слой, а не background-image на body — так
+  инверсия цвета (filter: invert) применяется ТОЛЬКО к фоновой картинке,
+  а не ко всему интерфейсу поверх неё (если бы invert() висел на body,
+  он перекрасил бы вообще всё: автомат, текст, кнопки).
+*/
+.app-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url('./assets/sprites/bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  filter: invert(1);
+}
+
+.app-stage {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2%;
+  padding: 2% 0;
+}
+
+/*
+  Размер вывески и корпуса автомата считается от vh (высоты вьюпорта),
+  а ширина уже сама следует из aspect-ratio — так суммарная высота
+  контента всегда предсказуема и гарантированно помещается в экран.
+*/
+.app-decor {
+  height: min(14vh, 140px);
+  width: auto;
+  aspect-ratio: 1197 / 413;
+  flex-shrink: 0;
+  filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.5));
+  animation: decor-glow 1.8s ease-in-out infinite;
+}
+
+/* "Огоньки" на вывеске: лёгкая пульсация яркости и сияния,
+   имитирующая мигающие лампочки на аркадной вывеске. */
+@keyframes decor-glow {
+  0%, 100% {
+    filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.5))
+      drop-shadow(0 0 6px rgba(255, 210, 80, 0.35))
+      brightness(1);
+  }
+  50% {
+    filter: drop-shadow(0 10px 16px rgba(0, 0, 0, 0.5))
+      drop-shadow(0 0 22px rgba(255, 210, 80, 0.85))
+      brightness(1.12);
+  }
+}
+
+/* ---------------------------------------------------------------
+   DESKTOP (>= 641px): автомат — по центру экрана, фиксированного
+   разумного размера.
+--------------------------------------------------------------- */
+@media (min-width: 641px) {
+  .app-stage {
+    max-width: 560px;
+    max-height: 860px;
+    height: 90vh;
+  }
+}
+
+/* ---------------------------------------------------------------
+   MOBILE (<= 640px, portrait): автомат занимает весь экран,
+   без полей, без скролла — единая "игровая" поверхность.
+--------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .app-stage {
+    width: 100%;
+    height: 100%;
+  }
+
+  .app-decor {
+    height: min(11vh, 110px);
+  }
+}
+
+/* Ландшафтная ориентация на телефоне — прячем вывеску, чтобы
+   автомат помещался по высоте без скролла */
+@media (max-width: 900px) and (orientation: landscape) {
+  .app-stage {
+    height: 100dvh;
+    flex-direction: row;
+    gap: 3%;
+  }
+
+  .app-decor {
+    display: none;
+  }
+}

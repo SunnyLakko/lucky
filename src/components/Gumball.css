@@ -1,0 +1,56 @@
+.gumball {
+  position: absolute;
+  left: 50%;
+  width: 13%;
+  z-index: 4;
+  transform: translateX(-50%);
+}
+
+.gumball__sprite {
+  width: 100%;
+  height: auto;
+  display: block;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.4));
+}
+
+/* Падение: шарик появляется в районе прорези/панели (~top 50%) и
+   падает вниз до лотка на дне спрайта (~top 85%). Проценты — от
+   высоты .machine__body, поэтому анимация одинаково хорошо смотрится
+   и на телефоне, и на десктопе. */
+.gumball--falling {
+  top: 50%;
+  animation: fall-into-tray 0.6s cubic-bezier(0.55, 0, 1, 0.45) forwards;
+}
+
+.gumball--settled {
+  top: 84%;
+  animation: settle-bounce 0.4s ease-out;
+}
+
+@keyframes fall-into-tray {
+  0% {
+    top: 50%;
+    transform: translateX(-50%) scale(1);
+  }
+  100% {
+    top: 84%;
+    transform: translateX(-50%) scale(1);
+  }
+}
+
+@keyframes settle-bounce {
+  0% {
+    top: 76%;
+    transform: translateX(-50%) scale(1.15);
+  }
+  60% {
+    top: 87%;
+    transform: translateX(-50%) scale(0.92);
+  }
+  100% {
+    top: 84%;
+    transform: translateX(-50%) scale(1);
+  }
+}
